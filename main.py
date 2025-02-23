@@ -8,8 +8,6 @@ def query(args):
     try:
         engine = SearchEngine(verbose=True)
         results: ResultPage = engine.arxiv(args.query)
-        for id, result in enumerate(results.items):
-            print(f"[{id + 1}] ({result.year}) {result.title}")
         if args.save:
             results.save(Path(args.save))
     except Exception as e:

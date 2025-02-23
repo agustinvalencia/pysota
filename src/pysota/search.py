@@ -1,7 +1,9 @@
 import xml.etree.ElementTree as ET
-from pydantic import BaseModel
-from pysota.definitions import Publication, ResultPage
+
 import requests
+from pydantic import BaseModel
+
+from pysota.definitions import Publication, ResultPage
 
 
 class SearchEngine(BaseModel):
@@ -27,7 +29,7 @@ class SearchEngine(BaseModel):
         total = root.find("{http://a9.com/-/spec/opensearch/1.1/}totalResults").text
         start_index = root.find(
             "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
-        ).text
+        ).text 
         items_per_page = root.find(
             "{http://a9.com/-/spec/opensearch/1.1/}itemsPerPage"
         ).text
