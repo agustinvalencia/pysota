@@ -1,0 +1,10 @@
+line-length = 100
+indent-width = 4
+
+[format]
+indent-style = "space"
+quote-style = "single"
+docstring-code-format = true
+
+[lint]
+fixable = ["ALL"]

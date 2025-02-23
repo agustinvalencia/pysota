@@ -16,7 +16,7 @@ class Publication(BaseModel):
         full_path = path.joinpath(filename)
         full_path.touch()
         with full_path as f:
-            OmegaConf.save(dump,f)
+            OmegaConf.save(dump, f)
             print(f"- {filename}")
 
     def clean_string(self, msg: str) -> str:
@@ -47,11 +47,9 @@ class ResultPage(BaseModel):
     start_index: int
     items: list[Publication]
 
-    def save(self, path: Path): 
+    def save(self, path: Path):
         path = path.joinpath(self.query.replace(" ", "_"))
         path.mkdir(parents=True, exist_ok=True)
         print(f"Saving results to {path}")
         for item in self.items:
             item.save(path)
-
-

@@ -8,6 +8,7 @@ dependencies = [
     "omegaconf>=2.3.0",
     "pydantic>=2.10.6",
     "requests>=2.32.3",
+    "sqlmodel>=0.0.22",
 ]
 
 [build-system]
@@ -16,5 +17,6 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "mypy>=1.15.0",
     "ruff>=0.9.7",
 ]

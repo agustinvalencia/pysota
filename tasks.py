@@ -2,17 +2,32 @@ import os
 import shutil
 from invoke import task
 
+
 def log_section(msg):
     """
     Log a section header to the console.
     """
     print(f"\n{'=' * len(msg)}\n{msg}\n{'=' * len(msg)}")
 
+
 def log_action(msg):
     """
     Log an action to the console.
     """
     print(f"\n(task) > {msg}")
+
+
+@task
+def check(c):
+    """
+    Check the code style.
+    """
+    log_section("Checking code quality")
+    log_action("Code style has been checked.")
+    c.run("uvx ruff check", echo=True)
+    log_action("Type checking")
+    c.run("uvx mypy src", echo=True)
+
 
 @task
 def clean(c):
@@ -22,7 +37,7 @@ def clean(c):
     log_section("Cleaning up the project")
     targets = [
         ".venv",
-        ".ruff_cache", 
+        ".ruff_cache",
         ".uv_cache",
     ]
     for t in targets:
@@ -40,9 +55,10 @@ def clean(c):
                 shutil.rmtree(path)
     if caches_list:
         log_action(f"Cleaned up the __pycache__ directories. : \n{caches_list}")
-        
+
     log_action("uv clean")
     c.run("uv clean", echo=True)
+
 
 @task
 def install(c):
@@ -52,7 +68,8 @@ def install(c):
     log_section("Installing dependencies")
     c.run("uv sync --force-reinstall", echo=True)
     log_action("Dependencies have been installed.")
-    
+
+
 @task
 def test(c):
     """
@@ -62,8 +79,13 @@ def test(c):
 
     log_action("uv run main.py --query 'neutrino' --save results")
     c.run("uv run main.py --query 'neutrino' --save results", echo=True)
-    
-    log_action("uv run main.py --query 'explainable reinforcement learning' --save results")
-    c.run("uv run main.py --query 'explainable reinforcement learning' --save results", echo=True)
-    
+
+    log_action(
+        "uv run main.py --query 'explainable reinforcement learning' --save results"
+    )
+    c.run(
+        "uv run main.py --query 'explainable reinforcement learning' --save results",
+        echo=True,
+    )
+
     log_action("Tests have been run.")

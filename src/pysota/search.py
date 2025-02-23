@@ -29,7 +29,7 @@ class SearchEngine(BaseModel):
         total = root.find("{http://a9.com/-/spec/opensearch/1.1/}totalResults").text
         start_index = root.find(
             "{http://a9.com/-/spec/opensearch/1.1/}totalResults"
-        ).text 
+        ).text
         items_per_page = root.find(
             "{http://a9.com/-/spec/opensearch/1.1/}itemsPerPage"
         ).text
