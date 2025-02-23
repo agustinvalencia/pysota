@@ -1,6 +1,31 @@
-def main():
-    print("Hello from pysota!")
+from pysota.definitions import ResultPage
+from pathlib import Path
+from pysota.search import SearchEngine
+import sys
+
+
+def query(args):
+    try:
+        engine = SearchEngine(verbose=True)
+        results: ResultPage = engine.arxiv(args.query)
+        for id, result in enumerate(results.items):
+            print(f"[{id + 1}] ({result.year}) {result.title}")
+        if args.save:
+            results.save(Path(args.save))
+    except Exception as e:
+        print(f"An error occurred: {e}", file=sys.stderr)
+
+
+
+def entrypoint():
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run arXiv search")
+    parser.add_argument("--query", help="Query string")
+    parser.add_argument("--save", help="Save results to dir")
+    args = parser.parse_args()
+    query(args)
 
 
 if __name__ == "__main__":
-    main()
+    entrypoint()
