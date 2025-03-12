@@ -5,10 +5,12 @@ from omegaconf import OmegaConf
 from pydantic import BaseModel, Field
 from sqlmodel import SQLModel, Field as SQLField, create_engine, Session
 
+
 # --- Define a configuration model ---
 class DBConfig(BaseModel):
-    database_url: str = "sqlite:///database.db"
+    database_url: str = 'sqlite:///database.db'
     echo: bool = False
+
 
 # --- Define a SQLModel for a scientific article ---
 class ScientificArticle(SQLModel, table=True):
@@ -16,6 +18,7 @@ class ScientificArticle(SQLModel, table=True):
     title: str
     authors: str  # Authors will be stored as a comma-separated string
     year: int
+
 
 # --- Define the DBManager as a Pydantic model ---
 class DBManager(BaseModel):
@@ -78,32 +81,8 @@ class DBManager(BaseModel):
         Returns the number of articles added.
         """
         count = 0
-        for yaml_file in folder.glob("*.yaml"):
+        for yaml_file in folder.glob('*.yaml'):
             yaml = OmegaConf.load(yaml_file)
-            data = OmegaConf.to_container(yaml) 
+            data = OmegaConf.to_container(yaml)
             print(data)
         return count
-
-# --- Example usage ---
-if __name__ == "__main__":
-    # Create a DB configuration instance (could also load from env variables)
-    config = DBConfig(database_url="sqlite:///database.db", echo=True)
-    db_manager = DBManager(config=config)
-
-    # Assume you have a folder "articles_yaml" containing YAML files.
-    # Example YAML file content:
-    #   title: "Quantum Entanglement"
-    #   authors:
-    #     - "Einstein"
-    #     - "Podolsky"
-    #     - "Rosen"
-    #   year: 1935
-    folder_path = Path("./articles_yaml")
-    articles_added = db_manager.create_database_from_folder(folder_path)
-    print(f"Added {articles_added} articles to the database.")
-
-    # List all articles:
-    articles = db_manager.query_all(ScientificArticle)
-    print("All articles in the DB:")
-    for article in articles:
-        print(article)

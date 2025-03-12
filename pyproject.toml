@@ -5,18 +5,81 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11, <3.12"
 dependencies = [
+    "crossrefapi>=1.6.0",
+    "gensim>=4.3.2",
+    "ipython>=9.0.2",
+    "jupyter>=1.1.1",
+    "lingua-language-detector>=2.0.2",
     "omegaconf>=2.3.0",
+    "pip>=25.0.1",
     "pydantic>=2.10.6",
+    "pyldavis>=3.4.1",
     "requests>=2.32.3",
+    "scholarly>=1.7.11",
+    "scikit-learn>=1.6.1",
+    "spacy>=3.8.4",
     "sqlmodel>=0.0.22",
+    "typer>=0.15.2",
+    "wordcloud>=1.9.4",
 ]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[project.scripts]
+do = "pysota.cli.query:main"
+
 [dependency-groups]
-dev = [
-    "mypy>=1.15.0",
-    "ruff>=0.9.7",
-]
+dev = ["mypy>=1.15.0", "pyright>=1.1.396", "ruff>=0.9.7", "taskipy>=1.14.1"]
+
+## TASKS
+[tool.taskipy.tasks]
+clean = "rm -rf results"
+re-search = "uv run task clean && uv run search.py trustworthy llm --name twllm --num-items 100 --save"
+# re-search = "uv run search.py relativity quantum --name quarel --num-items 100 --save"
+# re-search = "uv run search.py reinforcement learning --name rl --num-items 100 --save"
+process-db = "uv run process.py --query-name twllm --results-dir results --clean"
+# process-db = "uv run process.py --query-name quarel --results-dir results --clean"
+# process-db = "uv run process.py --query-name rl --results-dir results --clean"
+download = "uv run spacy download en_core_web_lg"
+redo = "rm -rf results && uv run task re-search && uv run task process-db"
+
+## RUFF 
+[tool.ruff]
+fix = true
+preview = true
+unsafe-fixes = true
+indent-width = 4
+line-length = 100
+target-version = "py311"
+src = ["src", "test"]
+exclude = [".git", ".venv", "__pycache__", "build", "dist"]
+extend-include = ["*.py", "*.ipynb"]
+
+[tool.ruff.lint]
+preview = true
+fixable = ["ALL"]
+task-tags = ["TODO", "HACK", "FIXME"]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+length-sort = true
+lines-between-types = 1
+lines-after-imports = 2
+order-by-type = true
+relative-imports-order = "closest-to-furthest"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 4
+
+[tool.ruff.format]
+preview = true
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = 72
+skip-magic-trailing-comma = true
