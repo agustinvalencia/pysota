@@ -20,7 +20,7 @@ class ArxivQuery(IQuery):
 
     def _includes(self) -> str:
         include = [f'all:{term}' for term in self.include]
-        include_str = '+AND+'.join(include)
+        include_str = '+OR+'.join(include)
         include_str = include_str.replace(' ', '_')
         return f'search_query={include_str}'
 

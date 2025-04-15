@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11, <3.12"
 dependencies = [
+    "bertopic>=0.16.4",
     "crossrefapi>=1.6.0",
     "gensim>=4.3.2",
     "ipython>=9.0.2",
@@ -36,10 +37,12 @@ dev = ["mypy>=1.15.0", "pyright>=1.1.396", "ruff>=0.9.7", "taskipy>=1.14.1"]
 ## TASKS
 [tool.taskipy.tasks]
 clean = "rm -rf results"
-re-search = "uv run task clean && uv run search.py trustworthy llm --name twllm --num-items 100 --save"
+re-search = "uv run task clean && uv run search.py self-supervised representation learning --name ssl --num-items 100 --save"
+# re-search = "uv run task clean && uv run search.py trustworthy llm --name twllm --num-items 100 --save"
 # re-search = "uv run search.py relativity quantum --name quarel --num-items 100 --save"
 # re-search = "uv run search.py reinforcement learning --name rl --num-items 100 --save"
-process-db = "uv run process.py --query-name twllm --results-dir results --clean"
+process-db = "uv run process.py --query-name ssl --results-dir results --clean"
+# process-db = "uv run process.py --query-name twllm --results-dir results --clean"
 # process-db = "uv run process.py --query-name quarel --results-dir results --clean"
 # process-db = "uv run process.py --query-name rl --results-dir results --clean"
 download = "uv run spacy download en_core_web_lg"
