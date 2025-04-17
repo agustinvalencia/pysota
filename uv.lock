@@ -1080,13 +1080,10 @@ source = { registry = "https://pypi.org/simple" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b1/a0/5bcf57bcc9f07e4832a9ff5d4fcc0225c79e92e946b2136b4201f0ccdf75/lingua_language_detector-2.0.2-cp311-cp311-macosx_10_7_x86_64.whl", hash = "sha256:14216ee3aeb0c9ab6a5665d71a1399653fe635ed66f208165ed67346feeb2a5c", size = 73638559 },
     { url = "https://files.pythonhosted.org/packages/4f/a4/b7cbdea7c3c25f9856e62ebdce910b51a4d08d210206d50ce040bfae3f5e/lingua_language_detector-2.0.2-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:ca558c52130a3a2a1fa432504fc71d4c6e2370340008d4bad261b33c05f81b3f", size = 74096293 },
-    { url = "https://files.pythonhosted.org/packages/a6/29/f707aae9410ed3154c3526d9803866b05384423189a49503b9164786cb2e/lingua_language_detector-2.0.2-cp311-cp311-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:a7ae33db037acb47c6517a938885dab4b8bf14e6d6b27a9fa7e237e8680babbc", size = 74752055 },
     { url = "https://files.pythonhosted.org/packages/bb/67/d873f0a05daa9923e48ddbb857a6c240a9f864016e010aa811118b4008c9/lingua_language_detector-2.0.2-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d6b22ad7d05db4ae6ef8ff127ccee2afb456941ddd781dc8675f110f77de8337", size = 74661524 },
     { url = "https://files.pythonhosted.org/packages/05/59/5dbee53dd15f76f6c1258de75d11ab708cbaad86a08abc525249adba0cf9/lingua_language_detector-2.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5d39aa5ca1b2d51aee46c7c96fa7ad0463dd2471a1b9827019b71fa367c918be", size = 74701784 },
     { url = "https://files.pythonhosted.org/packages/cd/3f/37c181ff67d29b6079287d8e9afe20ea20fc5dc648f9eef8f384ecd7a030/lingua_language_detector-2.0.2-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:d1502bb5e33a9f535b735cb8a898d96b81a63d19a1d2143f76e3b1ae7b7651ae", size = 74619191 },
-    { url = "https://files.pythonhosted.org/packages/3d/a4/aebfae8133642d2b1dcaf7d39cc623bdf2a96cfded945054f36bb9a29e64/lingua_language_detector-2.0.2-cp311-cp311-musllinux_1_2_i686.whl", hash = "sha256:d72a650be1c44e69dacac26aa7ab354790f95191bc830b3d43ab32ec71388a25", size = 74600253 },
     { url = "https://files.pythonhosted.org/packages/68/c7/81d9dfd992f25ea06c103335855aae8e678f356242fa1228cde23dc5ce52/lingua_language_detector-2.0.2-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:2c9588ed7e1dfbe06190d6946cd0a9c0f4f22018f09dc37bb6ac686bcfd67907", size = 74662800 },
-    { url = "https://files.pythonhosted.org/packages/63/3c/a6bc5fb5d176786115a31ba9e3862615f9455edc90c72a4e797e6993c855/lingua_language_detector-2.0.2-cp311-none-win32.whl", hash = "sha256:c0a9fcaaf3a05b7b0b199414bfcdfc06a90b6779bfc37f784fafd45a0dad3201", size = 73224123 },
     { url = "https://files.pythonhosted.org/packages/74/43/15c766f6a1749a3e0b0794e64223f7be4bf209e9d59f7b10bd5a45771be9/lingua_language_detector-2.0.2-cp311-none-win_amd64.whl", hash = "sha256:7ca5e4643cbb229c4eaae198458a5fafdeb812576edb3a160a5c2e4951d3cd1c", size = 73329231 },
 ]
 
@@ -1101,6 +1098,19 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/99/fe/d030f1849ebb1f394bb3f7adad5e729b634fb100515594aca25c354ffc62/llvmlite-0.44.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c5d22c3bfc842668168a786af4205ec8e3ad29fb1bc03fd11fd48460d0df64c1", size = 42361858 },
     { url = "https://files.pythonhosted.org/packages/d7/7a/ce6174664b9077fc673d172e4c888cb0b128e707e306bc33fff8c2035f0d/llvmlite-0.44.0-cp311-cp311-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:f01a394e9c9b7b1d4e63c327b096d10f6f0ed149ef53d38a09b3749dcf8c9610", size = 41184200 },
     { url = "https://files.pythonhosted.org/packages/5f/c6/258801143975a6d09a373f2641237992496e15567b907a4d401839d671b8/llvmlite-0.44.0-cp311-cp311-win_amd64.whl", hash = "sha256:d8489634d43c20cd0ad71330dde1d5bc7b9966937a263ff1ec1cebb90dc50955", size = 30331193 },
+]
+
+[[package]]
+name = "loguru"
+version = "0.7.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "win32-setctime", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3a/05/a1dae3dffd1116099471c643b8924f5aa6524411dc6c63fdae648c4f1aca/loguru-0.7.3.tar.gz", hash = "sha256:19480589e77d47b8d85b2c827ad95d49bf31b0dcde16593892eb51dd18706eb6", size = 63559 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl", hash = "sha256:31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c", size = 61595 },
 ]
 
 [[package]]
@@ -1935,6 +1945,7 @@ dependencies = [
     { name = "ipython" },
     { name = "jupyter" },
     { name = "lingua-language-detector" },
+    { name = "loguru" },
     { name = "omegaconf" },
     { name = "pip" },
     { name = "pydantic" },
@@ -1964,6 +1975,7 @@ requires-dist = [
     { name = "ipython", specifier = ">=9.0.2" },
     { name = "jupyter", specifier = ">=1.1.1" },
     { name = "lingua-language-detector", specifier = ">=2.0.2" },
+    { name = "loguru", specifier = ">=0.7.3" },
     { name = "omegaconf", specifier = ">=2.3.0" },
     { name = "pip", specifier = ">=25.0.1" },
     { name = "pydantic", specifier = ">=2.10.6" },
@@ -3080,6 +3092,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/56/fc/238c424fd7f4ebb25f8b1da9a934a3ad7c848286732ae04263661eb0fc03/widgetsnbextension-4.0.13.tar.gz", hash = "sha256:ffcb67bc9febd10234a362795f643927f4e0c05d9342c727b65d2384f8feacb6", size = 1164730 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/21/02/88b65cc394961a60c43c70517066b6b679738caf78506a5da7b88ffcb643/widgetsnbextension-4.0.13-py3-none-any.whl", hash = "sha256:74b2692e8500525cc38c2b877236ba51d34541e6385eeed5aec15a70f88a6c71", size = 2335872 },
+]
+
+[[package]]
+name = "win32-setctime"
+version = "1.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/8f/705086c9d734d3b663af0e9bb3d4de6578d08f46b1b101c2442fd9aecaa2/win32_setctime-1.2.0.tar.gz", hash = "sha256:ae1fdf948f5640aae05c511ade119313fb6a30d7eabe25fef9764dca5873c4c0", size = 4867 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e1/07/c6fe3ad3e685340704d314d765b7912993bcb8dc198f0e7a89382d37974b/win32_setctime-1.2.0-py3-none-any.whl", hash = "sha256:95d644c4e708aba81dc3704a116d8cbc974d70b3bdb8be1d150e36be6e9d1390", size = 4083 },
 ]
 
 [[package]]

@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 from functools import singledispatchmethod
 
 import requests
+from loguru import logger
 from pydantic import Field
 from rich import print, print_json
 
@@ -96,7 +97,7 @@ class ArxivProvider(Provider):
     @search.register
     def _(self, query: IQuery) -> ResultPage:
         url = query.generate_url()
-        print(f'Generated query: {url}')
+        logger.info(f'Generated query: {url}')
         response = requests.get(url)
         data = response.text
         root = ET.fromstring(data)

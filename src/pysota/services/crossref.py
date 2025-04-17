@@ -1,6 +1,7 @@
 from functools import singledispatchmethod
 
 import requests
+from loguru import logger
 from pydantic import Field
 from rich import print, print_json
 
@@ -70,14 +71,12 @@ class CrossrefProvider(Provider):
             start_index=offset,
         )
 
-        # if all:
-        #     return self.search_all(query)
         return self.search(query)
 
     @search.register
     def _(self, query: CrossrefQuery) -> ResultPage:
         url = query.generate_url()
-        print(f'Generated query: {url}')
+        logger.info(f'Generated query: {url}')
         response = requests.get(url)
         return self._build_results_page(response, query)
 

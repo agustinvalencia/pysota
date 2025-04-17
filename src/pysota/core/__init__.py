@@ -8,9 +8,9 @@
 # That is why the dependencies are imported first.
 
 # ruff: noqa
-from pysota.core.query import IQuery
-from pysota.core.publication import Publication
-from pysota.core.result_page import ResultPage
-from pysota.core.provider import Provider
+from .query import IQuery
+from .publication import Publication
+from .result_page import ResultPage
+from .provider import Provider
 
 __all__ = ['Provider', 'ResultPage', 'Publication', 'IQuery']

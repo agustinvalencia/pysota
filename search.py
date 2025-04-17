@@ -5,7 +5,7 @@ import typer
 from rich import print
 
 from pysota.core import ResultPage
-from pysota.search import ArxivProvider, CrossrefProvider, SearchEngine
+from pysota.services import ArxivProvider, CrossrefProvider, SearchEngine
 
 engine = SearchEngine(
     verbose=True,
