@@ -33,7 +33,13 @@ build-backend = "hatchling.build"
 pysota = "pysota.cli.app:main"
 
 [dependency-groups]
-dev = ["mypy>=1.15.0", "pyright>=1.1.396", "ruff>=0.9.7", "taskipy>=1.14.1"]
+dev = [
+    "mypy>=1.15.0",
+    "pyright>=1.1.396",
+    "ruff>=0.9.7",
+    "taskipy>=1.14.1",
+    "debugpy>=1.8.13",
+]
 
 ## TASKS
 [tool.taskipy.tasks]

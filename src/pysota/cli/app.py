@@ -1,7 +1,10 @@
+from typing import Annotated
+
+import debugpy
 import typer
 from loguru import logger
 
-from . import clean, db, search, version
+from . import clean, db, search, test, version
 
 logger.remove()
 logger.add(
@@ -22,11 +25,23 @@ logger.add(
     filter=lambda record: record['level'].name in ('WARNING', 'ERROR'),
 )
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
 app.add_typer(search.app)
 app.add_typer(clean.app)
 app.add_typer(db.app, name='db')
 app.add_typer(version.app)
+app.add_typer(test.app)
+
+DebugOption = Annotated[bool, typer.Option('--debug', help='Enable debug mode')]
+
+
+@app.callback(invoke_without_command=True)
+def debug_callback(ctx: typer.Context, debug: DebugOption = False):
+    if debug:
+        logger.debug('Enabling debug mode')
+        debugpy.listen(('localhost', 5678))
+        logger.debug('Waiting for debugger to attach on port 5678…')
+        debugpy.wait_for_client()
 
 
 def main():

@@ -9,7 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# ide
+.vscode
+
 # results
 results/
-
 logs/

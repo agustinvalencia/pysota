@@ -1961,6 +1961,7 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "debugpy" },
     { name = "mypy" },
     { name = "pyright" },
     { name = "ruff" },
@@ -1991,6 +1992,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "debugpy", specifier = ">=1.8.13" },
     { name = "mypy", specifier = ">=1.15.0" },
     { name = "pyright", specifier = ">=1.1.396" },
     { name = "ruff", specifier = ">=0.9.7" },

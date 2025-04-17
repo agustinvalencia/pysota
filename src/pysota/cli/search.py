@@ -16,7 +16,7 @@ from rich.progress import (
 from pysota.core import ResultPage
 from pysota.services import ArxivProvider, CrossrefProvider, SearchEngine, SemanticScholarProvider
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
 
 console = Console(stderr=True)
 progress = Progress(

@@ -11,7 +11,7 @@ from rich.progress import (
     TimeRemainingColumn,
 )
 
-app = typer.Typer(no_args_is_help=True)
+app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
 
 progress = Progress(
     SpinnerColumn(),
