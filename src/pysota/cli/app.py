@@ -4,7 +4,7 @@ import debugpy
 import typer
 from loguru import logger
 
-from . import clean, db, search, test, version
+from . import clean, cluster, db, search, version
 
 logger.remove()
 logger.add(
@@ -29,10 +29,11 @@ app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
 app.add_typer(search.app)
 app.add_typer(clean.app)
 app.add_typer(db.app, name='db')
+app.add_typer(cluster.app)
 app.add_typer(version.app)
-app.add_typer(test.app)
+# app.add_typer(test.app)
 
-DebugOption = Annotated[bool, typer.Option('--debug', help='Enable debug mode')]
+DebugOption = Annotated[bool, typer.Option('--debug', help='Enable debug mode (requires debugpy)')]
 
 
 @app.callback(invoke_without_command=True)
@@ -45,5 +46,5 @@ def debug_callback(ctx: typer.Context, debug: DebugOption = False):
 
 
 def main():
-    logger.info('starting')
+    logger.info('\n\n\n------------ Starting new session of PySOTA ------------ \n\n\n')
     app()

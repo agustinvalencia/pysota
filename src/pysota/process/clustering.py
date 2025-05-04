@@ -1,17 +1,28 @@
-from dataclasses import dataclass
-
+from pydantic import BaseModel, Field
 from sklearn.cluster import AgglomerativeClustering
+from spacy.language import Language
 
-from pysota.core import Publication
+from pysota.core.library import DocsLibrary
 
 
-@dataclass
-class Clusterer:
-    docs: list[Publication]
+class Clusterer(BaseModel):
+    library: DocsLibrary
+    lang: Language
+    clusters: dict[str, int] = Field(default={})
 
-    def cluster(self, n_clusters: int):
-        clusters = {}
-        clustering = AgglomerativeClustering(n_clusters=n_clusters)
+    class Config:
+        arbitrary_types_allowed = True
+
+    def agglomerative(self, n_clusters: int, metric: str = 'euclidean'):
+        self.clusters = {}
+        clustering = AgglomerativeClustering(n_clusters=n_clusters, metric=metric, linkage='ward')
+        vectors = self.library.get_vectors(self.lang)
+        ids = self.library.get_ids()
+        clustering.fit(vectors)
+
+        # The i-th label always corresponds to the i-th sample as well
         for idx, label in enumerate(clustering.labels_):
-            clusters.setdefault(label, []).append(self.docs[idx])
-        return clusters
+            id = ids[idx]
+            self.clusters[id] = label
+
+        return self.clusters

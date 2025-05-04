@@ -3,8 +3,10 @@ import textwrap
 from functools import cached_property
 from pathlib import Path
 
+import numpy as np
+import numpy.typing as npt
 from omegaconf import OmegaConf
-from pydantic import BaseModel, computed_field
+from pydantic import BaseModel, PrivateAttr, computed_field
 
 
 class Publication(BaseModel):
@@ -15,6 +17,10 @@ class Publication(BaseModel):
     provider_name: str
     query_name: str
     abstract: str
+    _vectors: npt.ArrayLike = PrivateAttr(default=np.array([]))
+
+    class Config:
+        arbitrary_types_allowed = True
 
     @computed_field
     @cached_property
@@ -79,6 +85,11 @@ class Publication(BaseModel):
         text = re.sub(r'<.*?>', '', text)
         text = re.sub(r'^\s*abstract\s*', '', text, flags=re.IGNORECASE)
         return text
+
+    def vectorise(self, lang, force=False):
+        if self._vectors is None or force:
+            self._vectors = lang(self.abstract)
+        return self._vectors
 
     def __str__(self):
         name = self.clean_text(self.title)

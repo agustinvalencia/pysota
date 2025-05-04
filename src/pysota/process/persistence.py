@@ -30,7 +30,7 @@ class Persistence:
     def save_files(db: list[Publication], path: Path) -> None:
         path.mkdir(parents=True, exist_ok=True)
         for i in db:
-            i.save(path)
+            i.save(path, include_index=True)
 
     @staticmethod
     def save_clusters(clusters: dict[int, list[Publication]], path: Path) -> None:
