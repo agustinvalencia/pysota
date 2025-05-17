@@ -11,10 +11,10 @@ from pysota.process.clustering import Clusterer
 app = Typer(no_args_is_help=True, invoke_without_command=True)
 
 
-@app.command()
+@app.command(help='Build clusters from a results database')
 def cluster(
-    results_dir: Annotated[Path, Option('--dir')] = Path('./results'),
-    db: Annotated[Path, Option('--db', help='Folder to store the DB')] = Path('./db'),
+    db: Annotated[Path, Option('--db', help='Folder to store the DB')],
+    results_dir: Annotated[Path, Option('--dir')] = Path('./results/clusters'),
 ):
     library = DocsLibrary(folder=results_dir.joinpath(db))
     lang = spacy.load('en_core_web_lg')

@@ -56,7 +56,7 @@ def clean_all(results_dir: Path):
         results_dir.rmdir()
 
 
-@app.command()
+@app.command(help='Remove all the results')
 def clean(
     results_dir: Annotated[Path, typer.Option(help='Results location')] = Path('./results'),
     all: Annotated[bool, typer.Option(help='Remove all results. Overrides --query')] = False,

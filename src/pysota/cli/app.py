@@ -4,7 +4,7 @@ import debugpy
 import typer
 from loguru import logger
 
-from . import clean, cluster, db, search, version
+from . import clean, cluster, db_build, search, version
 
 logger.remove()
 logger.add(
@@ -26,9 +26,9 @@ logger.add(
 )
 
 app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
-app.add_typer(search.app)
+app.add_typer(search.app, help='Search things')
 app.add_typer(clean.app)
-app.add_typer(db.app, name='db')
+app.add_typer(db_build.app)
 app.add_typer(cluster.app)
 app.add_typer(version.app)
 # app.add_typer(test.app)

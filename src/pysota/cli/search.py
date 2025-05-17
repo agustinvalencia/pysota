@@ -38,13 +38,13 @@ engine = SearchEngine(
 )
 
 
-@app.command()
+@app.command(help='Use the subscribed clients to search a query')
 def search(
     include: Annotated[List[str], typer.Argument()],
     name: Annotated[str, typer.Option()],
     exclude: Annotated[List[str], typer.Option('--exclude', '-x')] = [],
     save: Annotated[bool, typer.Option('--save', '-s')] = False,
-    results_dir: Annotated[Path, typer.Option('--dir')] = Path('./results'),
+    results_dir: Annotated[Path, typer.Option('--dir')] = Path('./results/raw'),
     num_items: Annotated[int, typer.Option('--num-items', '-n')] = 10,
     offset: Annotated[int, typer.Option()] = 0,
     all: Annotated[bool, typer.Option()] = False,

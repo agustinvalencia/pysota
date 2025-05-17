@@ -10,18 +10,15 @@ from pysota.process import Cleaner, Persistence
 app = Typer(no_args_is_help=True, invoke_without_command=True)
 
 
-@app.command()
-def clean():
-    print('Cleaning')
-
-
-@app.command()
-def build(
+@app.command(help='Build a database from a query results')
+def db_build(
     query: Annotated[str, Option('--query', '-q', help='Query name')],
     results_dir: Annotated[Path, Option('--results-dir', help='Location of results')] = Path(
-        './results'
+        './results/raw'
     ),
-    name: Annotated[Path, Option('--name', help='Folder to store the DB')] = Path('./db'),
+    name: Annotated[
+        str, Option('--name', help='Folder to store the DB. Defaults to query name')
+    ] = '',
 ):
     db = Persistence.load_files(path=results_dir, query_name=query)
     logger.info(f'Filling database with {len(db)} total results')
@@ -34,6 +31,9 @@ def build(
     db = Cleaner.remove_non_english(db)
     logger.info(f'Removed non-english: {len(db)} total results')
     print(f'Removed non-english: [bold]{len(db)}[/bold] total results')
+
+    if name == '':
+        name = query
 
     db_path = results_dir.joinpath(name)
     Persistence.save_files(db, db_path)

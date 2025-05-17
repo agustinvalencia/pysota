@@ -43,17 +43,8 @@ dev = [
 
 ## TASKS
 [tool.taskipy.tasks]
-clean = "rm -rf results"
-re-search = "uv run task clean && uv run search.py self-supervised representation learning --name ssl --num-items 100 --save"
-# re-search = "uv run task clean && uv run search.py trustworthy llm --name twllm --num-items 100 --save"
-# re-search = "uv run search.py relativity quantum --name quarel --num-items 100 --save"
-# re-search = "uv run search.py reinforcement learning --name rl --num-items 100 --save"
-process-db = "uv run process.py --query-name ssl --results-dir results --clean"
-# process-db = "uv run process.py --query-name twllm --results-dir results --clean"
-# process-db = "uv run process.py --query-name quarel --results-dir results --clean"
-# process-db = "uv run process.py --query-name rl --results-dir results --clean"
+clean = "rm -rf results logs"
 download = "uv run spacy download en_core_web_lg"
-redo = "rm -rf results && uv run task re-search && uv run task process-db"
 
 ## RUFF 
 [tool.ruff]
