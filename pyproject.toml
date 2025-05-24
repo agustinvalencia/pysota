@@ -10,6 +10,7 @@ dependencies = [
     "gensim>=4.3.2",
     "ipython>=9.0.2",
     "jupyter>=1.1.1",
+    "jupytext>=1.17.1",
     "lingua-language-detector>=2.0.2",
     "loguru>=0.7.3",
     "omegaconf>=2.3.0",
