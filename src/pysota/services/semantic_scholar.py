@@ -110,15 +110,18 @@ class SemanticScholarProvider(Provider):
         raise NotImplementedError
 
     def _build_results_page(self, response, query: SemanticScholarQuery) -> ResultPage:
-        total = response.json()['total']
-        papers = self.extract_items(response, query)
-        print(f'Found {total} matches')
-        logger.info(f'Found {total} matches')
-        res = ResultPage(
-            query=query,
-            total=total,
-            items_per_page=query.items_per_page,
-            start_index=query.start_index,
-            items=papers,
-        )
-        return res
+        try:
+            total = response.json()['total']
+            papers = self.extract_items(response, query)
+            print(f'Found {total} matches')
+            logger.info(f'Found {total} matches')
+            res = ResultPage(
+                query=query,
+                total=total,
+                items_per_page=query.items_per_page,
+                start_index=query.start_index,
+                items=papers,
+            )
+            return res
+        except:
+            print(response.json())

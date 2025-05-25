@@ -26,6 +26,8 @@ class DocsLibrary(BaseModel):
 
     def _load_store(self):
         raws = Persistence.load_files(self.folder)
+        if len(raws) == 0:
+            raise ValueError(f'Persistence load empty \n: {raws}')
         for pub in raws:
             self.store[pub.id] = pub
 

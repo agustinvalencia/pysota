@@ -2,25 +2,25 @@ from functools import singledispatchmethod
 
 import requests
 from loguru import logger
-    from pydantic import Field
-    from rich import print, print_json
+from pydantic import Field
+from rich import print, print_json
 
-    from pysota.core import IQuery, Provider, ResultPage
-    from pysota.core.publication import Publication
+from pysota.core import IQuery, Provider, ResultPage
+from pysota.core.publication import Publication
 
 
-    class CrossrefQuery(IQuery):
-        """
-        CrossrefQuery class that implements the IQuery interface for querying the Crossref API.
-        This class provides methods to construct and execute queries to the Crossref API,
-        which is used for retrieving metadata about academic publications.
-        """
+class CrossrefQuery(IQuery):
+    """
+    CrossrefQuery class that implements the IQuery interface for querying the Crossref API.
+    This class provides methods to construct and execute queries to the Crossref API,
+    which is used for retrieving metadata about academic publications.
+    """
 
-        base: str = Field(default='https://api.crossref.org/works?', frozen=True)
+    base: str = Field(default='https://api.crossref.org/works?', frozen=True)
 
-        def _includes(self) -> str:
-            include_str = '+'.join(self.include)
-            return f'query.title={include_str}'
+    def _includes(self) -> str:
+        include_str = '+'.join(self.include)
+        return f'query.title={include_str}'
 
     def generate_url(self) -> str:
         if len(self.exclude) > 0:

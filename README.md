@@ -2,7 +2,15 @@
 
 ## todo
 
-- [ ]
+- [x] search
+- [x] create db-build
+- [ ] create clusters
+
+  - [ ] load db from persistence
+  - [ ] create clusters
+  - [ ] write clusters to persistence
+
+- [ ] define topics from clusters
 
 # Steps
 
@@ -65,4 +73,26 @@ uv run pysota search reinforcement learning --name rl -n 100 --save
 
 ```
  uv run pysota db-build -q rl --name rl-db
+```
+
+## Clustering
+
+```
+uv run pysota cluster --help
+
+ Usage: pysota cluster [OPTIONS]
+
+ Build clusters from a results database
+
+╭─ Options ───────────────────────────────────────────────────────────────────────────────╮
+│ *  --db          PATH  Folder to store the DB [default: None] [required]                │
+│    --dir         PATH  [default: results/clusters]                                      │
+│    --help              Show this message and exit.                                      │
+╰─────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+Test command
+
+```
+uv run pysota cluster --db results/db/rl --dir results/clusters/rl
 ```

@@ -34,7 +34,7 @@ doc_vectors = [nlp(doc).vector for doc in documents]
 X = np.array(doc_vectors)
 
 eps = 0.5
-mtric = 'euclidean'
+metric = 'euclidean'
 
 # cluster = DBSCAN(eps=eps, min_samples=2)
 # dbscan = OPTICS(min_samples=2)
@@ -73,5 +73,5 @@ for label, docs in clusters.items():
         print(f'  - {title}')
     print('\n\n ========================================================= \n\n')
 
-# %%
+# c%%
 Persistence.save_clusters(clusters, Path(f'../results/clustered/{metric}'))

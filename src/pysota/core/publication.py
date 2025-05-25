@@ -88,7 +88,7 @@ class Publication(BaseModel):
 
     def vectorise(self, lang, force=False):
         if self._vectors is None or force:
-            self._vectors = lang(self.abstract)
+            self._vectors = lang(self.abstract).vector
         return self._vectors
 
     def __str__(self):

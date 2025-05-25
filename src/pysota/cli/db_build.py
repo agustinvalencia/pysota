@@ -35,7 +35,7 @@ def db_build(
     if name == '':
         name = query
 
-    db_path = results_dir.joinpath(name)
+    db_path = results_dir.joinpath('../db').joinpath(name)
     Persistence.save_files(db, db_path)
     logger.info(f'Saved database to {db_path}')
     print(f'Saved database to {db_path}')
