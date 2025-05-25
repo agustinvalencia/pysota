@@ -31,12 +31,3 @@ class Persistence:
         path.mkdir(parents=True, exist_ok=True)
         for i in db:
             i.save(path, include_index=True)
-
-    @staticmethod
-    def save_clusters(clusters: dict[int, list[Publication]], path: Path) -> None:
-        path.mkdir(parents=True, exist_ok=True)
-        for cluster_id, publications in clusters.items():
-            cluster_path = path.joinpath(f'cluster_{cluster_id}')
-            cluster_path.mkdir(parents=True, exist_ok=True)
-            for publication in publications:
-                publication.save(cluster_path)

@@ -2,8 +2,7 @@ from pydantic import BaseModel, Field
 from sklearn.cluster import AgglomerativeClustering
 from spacy.language import Language
 
-from pysota.core.library import DocsLibrary
-from pysota.core.publication import Publication
+from pysota.core import ClustersContainer, DocsLibrary
 
 
 class Clusterer(BaseModel):
@@ -15,12 +14,11 @@ class Clusterer(BaseModel):
         arbitrary_types_allowed = True
 
     def agglomerative(
-        self, n_clusters: int, metric: str = 'euclidean'
-    ) -> dict[int, list[Publication]]:
+        self, name: str, n_clusters: int, metric: str = 'euclidean'
+    ) -> ClustersContainer:
         self.clusters = {}
         clustering = AgglomerativeClustering(n_clusters=n_clusters, metric=metric, linkage='ward')
         vectors = self.library.get_vectors(self.lang)
-        print(f'{vectors.shape=}')
         ids = self.library.get_ids()
         clustering.fit(vectors)
 
@@ -29,4 +27,4 @@ class Clusterer(BaseModel):
             id = ids[idx]
             self.clusters[id] = label
 
-        return self.clusters
+        return ClustersContainer(name=name, num=n_clusters, mapping=self.clusters)

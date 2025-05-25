@@ -5,7 +5,8 @@ from loguru import logger
 from rich import print
 from typer import Option, Typer
 
-from pysota.process import Cleaner, Persistence
+from pysota.core import Persistence
+from pysota.process import Cleaner
 
 app = Typer(no_args_is_help=True, invoke_without_command=True)
 

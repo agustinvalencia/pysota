@@ -3,8 +3,7 @@ from functools import singledispatchmethod
 
 from pydantic import BaseModel, Field
 
-from pysota.core import Publication, ResultPage
-from pysota.core.query import IQuery
+from pysota.core import IQuery, Publication, ResultPage
 
 
 class Provider(ABC, BaseModel):

@@ -9,8 +9,19 @@
 
 # ruff: noqa
 from .query import IQuery
+from .cluster_container import ClustersContainer
 from .publication import Publication
+from .persistence import Persistence
+from .library import DocsLibrary
 from .result_page import ResultPage
 from .provider import Provider
 
-__all__ = ['Provider', 'ResultPage', 'Publication', 'IQuery']
+__all__ = [
+    'Provider',
+    'ResultPage',
+    'Publication',
+    'DocsLibrary',
+    'ClustersContainer',
+    'IQuery',
+    'Persistence',
+]

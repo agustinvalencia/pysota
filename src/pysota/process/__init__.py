@@ -1,6 +1,13 @@
+# ruff: isort: skip_file
+
 from .bow import BagOfWords
 from .cleaner import Cleaner
+from .clustering import Clusterer
 from .frequency_counter import FrequencyCounter
-from .persistence import Persistence
 
-__all__ = ['BagOfWords', 'FrequencyCounter', 'Persistence', 'Cleaner']
+__all__ = [
+    'BagOfWords',
+    'FrequencyCounter',
+    'Clusterer',
+    'Cleaner',
+]

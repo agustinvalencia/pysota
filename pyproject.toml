@@ -85,3 +85,6 @@ quote-style = "double"
 docstring-code-format = true
 docstring-code-line-length = 72
 skip-magic-trailing-comma = true
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["I001"]

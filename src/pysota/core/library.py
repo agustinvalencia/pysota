@@ -4,9 +4,7 @@ import numpy as np
 from pydantic import BaseModel, Field
 from spacy.language import Language
 
-from pysota.process.persistence import Persistence
-
-from .publication import Publication
+from pysota.core import Persistence, Publication
 
 
 class DocsLibrary(BaseModel):
