@@ -16,7 +16,7 @@ class ResultPage(BaseModel):
     start_index: int
     items: list[Publication]
 
-    def save(self, path: Path, include_index: bool = False) -> None:
+    def save(self, path: Path) -> None:
         if len(self.items) == 0:
             print('No items to save')
             logger.info('No items to save')
@@ -38,7 +38,7 @@ class ResultPage(BaseModel):
                     error += 1
                     continue
 
-                item.save(path, include_index)
+                item.save(path)
                 saved += 1
 
             except Exception:

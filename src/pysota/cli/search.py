@@ -72,7 +72,7 @@ def search(
             logger.info(f'Saving results to {results_dir}')
 
             for provider, result in results.items():
-                result.save(Path(results_dir).joinpath(name).joinpath(provider), include_index=True)
+                result.save(Path(results_dir).joinpath(name).joinpath(provider))
                 progress.advance(task_id)
 
 

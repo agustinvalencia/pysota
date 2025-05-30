@@ -38,15 +38,12 @@ class Publication(BaseModel):
             return False, f'{self.abstract=}'
         return True, ''
 
-    def save(self, path: Path, include_index: bool = False) -> None:
+    def save(self, path: Path) -> None:
         self.abstract = self.clean_text(self.abstract)
         self.title = self.clean_text(self.title)
         dump = OmegaConf.create(self.model_dump())
-        if include_index:
-            filename = f'{self.internal_index:03d}__{self}.yaml'
-        else:
-            filename = f'{self}.yaml'
-        full_path = path.joinpath(filename)
+        filename = self.id
+        full_path = path.joinpath(f'{filename}.yaml')
         full_path.touch()
         with full_path as f:  # type: ignore
             OmegaConf.save(dump, f)

@@ -4,11 +4,11 @@
 
 - [x] search
 - [x] create db-build
-- [ ] create clusters
+- [x] create clusters
 
-  - [ ] load db from persistence
-  - [ ] create clusters
-  - [ ] write clusters to persistence
+  - [x] load db from persistence
+  - [x] create clusters
+  - [x] write clusters to persistence
 
 - [ ] define topics from clusters
 

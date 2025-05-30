@@ -11,7 +11,7 @@ from pysota.process import Cleaner
 app = Typer(no_args_is_help=True, invoke_without_command=True)
 
 
-@app.command(help='Build a database from a query results')
+@app.command(help='Build a database  from a query results')
 def db_build(
     query: Annotated[str, Option('--query', '-q', help='Query name')],
     results_dir: Annotated[Path, Option('--results-dir', help='Location of results')] = Path(

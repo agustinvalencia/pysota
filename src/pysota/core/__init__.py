@@ -9,9 +9,9 @@
 
 # ruff: noqa
 from .query import IQuery
-from .cluster_container import ClustersContainer
 from .publication import Publication
 from .persistence import Persistence
+from .cluster_container import ClustersContainer
 from .library import DocsLibrary
 from .result_page import ResultPage
 from .provider import Provider

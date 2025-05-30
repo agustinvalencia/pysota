@@ -4,7 +4,7 @@ import debugpy
 import typer
 from loguru import logger
 
-from . import clean, cluster, db_build, search, version
+from . import clean, cluster, db, search, version
 
 logger.remove()
 logger.add(
@@ -25,10 +25,10 @@ logger.add(
     filter=lambda record: record['level'].name in ('WARNING', 'ERROR'),
 )
 
-app = typer.Typer(no_args_is_help=True, invoke_without_command=True)
+app = typer.Typer(no_args_is_help=True, invoke_without_command=True, pretty_exceptions_enable=False)
 app.add_typer(search.app, help='Search things')
 app.add_typer(clean.app)
-app.add_typer(db_build.app)
+app.add_typer(db.app, help='DB Management')
 app.add_typer(cluster.app)
 app.add_typer(version.app)
 # app.add_typer(test.app)

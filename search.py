@@ -43,7 +43,6 @@ def run_query(
                 Path(results_dir)
                 .joinpath(name)
                 .joinpath(provider), 
-                include_index=True
             )
             # fmt: on
 
