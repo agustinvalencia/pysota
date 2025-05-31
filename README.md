@@ -5,12 +5,11 @@
 - [x] search
 - [x] create db-build
 - [x] create clusters
-
   - [x] load db from persistence
   - [x] create clusters
   - [x] write clusters to persistence
-
-- [ ] define topics from clusters
+- [x] define topics from clusters
+- [ ] Update documentation
 
 # Steps
 
