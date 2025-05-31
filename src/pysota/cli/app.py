@@ -4,7 +4,7 @@ import debugpy
 import typer
 from loguru import logger
 
-from . import clean, cluster, db, search, version
+from . import clean, cluster, db, search, topic, version
 
 logger.remove()
 logger.add(
@@ -30,8 +30,8 @@ app.add_typer(search.app, help='Search things')
 app.add_typer(clean.app)
 app.add_typer(db.app, help='DB Management')
 app.add_typer(cluster.app)
+app.add_typer(topic.app)
 app.add_typer(version.app)
-# app.add_typer(test.app)
 
 DebugOption = Annotated[bool, typer.Option('--debug', help='Enable debug mode (requires debugpy)')]
 

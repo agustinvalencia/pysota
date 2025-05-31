@@ -15,9 +15,7 @@ class Persistence:
 
     @staticmethod
     def load_files(path: Path, query_name: str = '') -> list[Publication]:
-        print(f'Analysing {path=} + {query_name=}')
         files = list(path.joinpath(query_name).glob('**/*.yaml'))
-        print(f'Got [green]{len(files)}[/green] hits')
         db = []
         for file in files:
             if file.name == '_index.yaml':

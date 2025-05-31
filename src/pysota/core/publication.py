@@ -76,11 +76,37 @@ class Publication(BaseModel):
         text = text.strip('_')
         return text
 
-    def clean_text(self, text):
+    # Used GPT to come up with these regex
+    def clean_text(self, text: str) -> str:
+        # Remove LaTeX document class and package inclusions
+        text = re.sub(r'\\documentclass\[.*?\]\{.*?\}\s*\\usepackage\{.*?\}', '', text)
+        text = re.sub(r'\\setlength\{.*?\}\{.*?\}', '', text)
+
+        # Remove \begin{document}...\end{document} blocks and their content
+        # This is more robust as it removes the content as well.
+        text = re.sub(r'\\begin\{document\}.*?\\end\{document\}', '', text, flags=re.DOTALL)
+
+        # Remove common LaTeX math environments like $$...$$
+        text = re.sub(r'\$\$.*?\$\$', '', text, flags=re.DOTALL)
+
+        # Remove any remaining common LaTeX commands that might appear outside environments
+        # This regex handles the `\something{another}` pattern.
+        text = re.sub(r'\\[a-zA-Z]+\{[^\}]*\}', '', text)
+        # This handles `\something` (commands without arguments).
+        text = re.sub(r'\\[a-zA-Z]+', '', text)
+
+        # Remove common LaTeX symbols like % that might be escaped
+        text = text.replace('\%', '')
+
         # map multiple spaces to single space
         text = re.sub(r'\s+', ' ', text)
+        # remove HTML tags if any (from previous version)
         text = re.sub(r'<.*?>', '', text)
+        # remove leading 'abstract' keyword (from previous version)
         text = re.sub(r'^\s*abstract\s*', '', text, flags=re.IGNORECASE)
+
+        # Strip leading and trailing whitespace again after all replacements
+        text = text.strip()
         return text
 
     def vectorise(self, lang, force=False):
